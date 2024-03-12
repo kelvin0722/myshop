@@ -1,7 +1,12 @@
 import React from 'react';
 import Image from "next/image";
+import { getProduct } from '@/services/api';
+import { formatCurrency } from '@/lib/helpers/currency';
 
-export default function ProductDetails(){
+export default async  function ProductDetails({params}: PageProps) {
+    const { id } = params;
+    const product = await getProduct(id);
+
     return (
         <section className="py-12 sm:py-16">
             <div className="container mx-auto px-4">
@@ -12,7 +17,7 @@ export default function ProductDetails(){
                             <div className="lg:order-2 lg:ml-5">
                                 <div className="max-w-xl overflow-hidden rounded-lg bg-slate-100">
                                     <Image
-                                        src="https://dev-images-carry1st-products.s3.eu-west-2.amazonaws.com/6b4cf068-0be3-4b9e-b741-525d46eec004.png"
+                                        src={product.imageLocation}
                                         alt="Afro-Brazillian Coffee Image"
                                         layout="fixed"
                                         className="rounded-lg"
@@ -26,16 +31,14 @@ export default function ProductDetails(){
                     </div>
 
                     <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
-                        <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">Afro-Brazillian Coffee</h1>
+                        <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">{product.name}</h1>
 
-                        <p className="my-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+                        <p className="my-4">{product.description}</p>
 
                         <div
                             className="mt-10 flex flex-col items-center  justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
                             <div className="flex items-end">
-                                <h1 className="text-3xl font-bold">$60.50</h1>
+                                <h1 className="text-3xl font-bold">{formatCurrency(product.currencyCode, product.price)}</h1>
                             </div>
 
                             <div className="flex gap-4 sm:gap-2">
