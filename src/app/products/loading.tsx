@@ -1,5 +1,5 @@
-import {ProductsLoadingSkeleton} from "@/components/ProductsLoadingSkeleton";
+import { ProductsLoadingSkeleton } from '@/components/ProductsLoadingSkeleton';
 
-export default function Loading(){
-    return <ProductsLoadingSkeleton />
+export default function Loading() {
+  return <ProductsLoadingSkeleton />;
 }
