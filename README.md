@@ -8,7 +8,7 @@ This project is a prototype for a basic eCommerce platform built with Next.js 13
 1.  **Clone the repository:**
 
 ```bash
-git clone https://github.com/your-username/myshop.git  
+git clone https://github.com/kelvin0722/myshop
 ```
 
 1. **Install dependencies:**
